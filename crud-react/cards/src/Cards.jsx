@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import { getCards } from "./cardAPI";
+import { getCards , updateCardsAfterDrag } from "./cardAPI";
 import AddCard from "./AddCard";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+
 const Cards = () => {
 
     const [cards, setCards] = useState([]);
@@ -29,12 +30,14 @@ const Cards = () => {
 
     //function to handle dragging cards
 
-    const handleOnDragEnd = (result) => {
+    const handleOnDragEnd = async(result) => {
         if (!result.destination) return;
         const items = Array.from(cards);
         const [reorderedItem] = items.splice(result.source.index, 1);
         items.splice(result.destination.index, 0, reorderedItem);
         setCards(items);
+        console.log(items);
+        await updateCardsAfterDrag(result.source.index,result.destination.index);
     };
 
 

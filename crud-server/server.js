@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    console.log("cards before send",cards);
+    console.log("cards before send", cards);
     res.send(cards);
 });
 app.get("/:id", (req, res) => {
@@ -26,9 +26,9 @@ app.get("/:id", (req, res) => {
     res.send(card);
 });
 app.delete("/:id", (req, res) => {
-    let initialLength=cards.length;
+    let initialLength = cards.length;
     let id = req.params.id;
-    cards=cards.filter(Boolean);//null לסנן
+    cards = cards.filter(Boolean);//null לסנן
     cards = cards.filter(item => item.id != id);
     if (cards.length < initialLength) {
         console.log(cards);
@@ -37,25 +37,43 @@ app.delete("/:id", (req, res) => {
         res.status(404).send(`card with ID ${id} not found`);
     }
 });
-app.put("/:id", (req, res) => {
+app.put("/card-data/:id", (req, res) => {
     let id = req.params.id;
     let card = req.body;
     let index = cards.findIndex(item => item.id == id);
-    console.log("id",id);
-    console.log("card",card);
-    console.log("index",index);
-    if (index !== -1){
+    console.log("id", id);
+    console.log("card", card);
+    console.log("index", index);
+    if (index !== -1) {
         cards[index] = card;
         res.send(`card ${id} updated`);
     }
     else
-    res.status(400).send("could not update");
+        res.status(400).send("could not update");
 });
+
+app.put("/dragged", (req, res) => {
+    let cardPos = req.body;
+    console.log(cardPos);
+    console.log(cardPos.source);
+    console.log(cardPos.destination);
+    if (cardPos.source != null && cardPos.destination != null) {
+        const items = Array.from(cards);
+        const [reorderedItem] = items.splice(cardPos.source, 1);
+        items.splice(cardPos.destination, 0, reorderedItem);
+        cards = items;
+        res.send("card array updated");
+    }
+    else
+        res.status(400).send("error in dragged card - missing parameters");
+
+});
+
 app.post("/", (req, res) => {
-    console.log("req",req);
+    console.log("req", req);
 
     let card = req.body;
-    console.log("card",card);
+    console.log("card", card);
     let newcard = {
         id: ++cardCounter,
         ...card
@@ -66,4 +84,4 @@ app.post("/", (req, res) => {
 
 let port = 5000;
 
-app.listen(port, ()=>{console.log(`app is listening on port ${port}`)})
+app.listen(port, () => { console.log(`app is listening on port ${port}`) })

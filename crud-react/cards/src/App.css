@@ -5,15 +5,16 @@ body {
 }
 
 .ul-cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
   list-style: none;
 }
 
 .li-card {
-  flex: 0 0 30%;
+  flex: 0 0 300px; 
+  max-width: 1fr;
   position: relative;
 }
 

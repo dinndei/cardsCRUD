@@ -1,5 +1,6 @@
 import axios from "axios";
  const baseUrl="http://localhost:5000";
+ 
 // GET
 export const getCards = async () => {
     try {
@@ -18,11 +19,28 @@ export const updateCardByID = async (id,text,color) => {
             text:text,
             color:color
         }
-        return await axios.put(`${baseUrl}/${id}`,body);
+        return await axios.put(`${baseUrl}/card-data/${id}`,body);
        
     }
     catch (error) {
         console.error("error in updating card",error);
+    }
+}
+
+
+// UPDATE
+export const updateCardsAfterDrag = async (src,dest) => {
+    try {
+        let body={
+            source:src,
+            destination:dest
+        }
+        console.log("body",body);
+        return await axios.put(`${baseUrl}/dragged`,body);
+       
+    }
+    catch (error) {
+        console.error("error in updating cards after drag",error);
     }
 }
 
