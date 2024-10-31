@@ -1,0 +1,162 @@
+body {
+  background-color: #f0f0f5; /* רקע בהיר */
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.ul-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  list-style: none;
+}
+
+.li-card {
+  flex: 0 0 30%;
+  position: relative;
+}
+
+
+.card-inner-wrap {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-inner-wrap:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-text {
+  font-size: 1.2em;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.add-card-btn {
+  font-size: 2em;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  color: #666;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-card-btn:hover {
+  background-color: #c0c0c0;
+}
+
+.color-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.color-div {
+  height: 35px;
+  width: 35px;
+  border: solid 2px #aaa;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.color-div:hover {
+  transform: scale(1.1);
+  border-color: #666;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.pink {
+  background-color: pink;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.green {
+  background-color: green;
+}
+
+.x-btn {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.x-btn:hover {
+  color: #555;
+}
+
+.add-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1em;
+  margin-top: 15px;
+}
+
+.add-btn:hover {
+  background-color: #45a049;
+}
+
+.card-text-input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+.card-btns-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.open-color-btn,
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: #666;
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+.open-color-btn:hover,
+.delete-btn:hover {
+  color: #333;
+}
+
+.open-color-btn {
+  align-self: flex-start;
+}
+
+.delete-btn {
+  align-self: flex-end;
+}
